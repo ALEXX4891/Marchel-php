@@ -2207,6 +2207,8 @@ a {
 }
 
 .glavnaya .glavnaya__main .banner {
+  max-width: 1920px;
+  margin: 0 auto;
   background: url("../img/banner.jpg");
   background-repeat: no-repeat;
   background-position: center;
@@ -2611,6 +2613,8 @@ a {
 }
 
 .glavnaya .glavnaya__main .about {
+  max-width: 1920px;
+  margin: 0 auto;
   background: url("../img/about.jpg");
   background-repeat: no-repeat;
   background-position: center;
@@ -2659,6 +2663,8 @@ a {
 }
 
 .about-us-page .banner {
+  max-width: 1920px;
+  margin: 0 auto;
   background: url("../img/about-banner.jpg");
   background-repeat: no-repeat;
   background-position: center;
@@ -7216,11 +7222,26 @@ a {
   }
 }
 
-.webp .glavnaya .glavnaya__main .banner{ background: url(../img/banner.webp); }
+.webp .glavnaya .glavnaya__main .banner{ 
+  background: url(../img/banner.webp); 
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
 
-.webp .glavnaya .glavnaya__main .about{ background: url(../img/about.webp); }
+.webp .glavnaya .glavnaya__main .about{ 
+  background: url(../img/about.webp); 
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
 
-.webp .about-us-page .banner{ background: url(../img/about-banner.webp); }
+.webp .about-us-page .banner{ 
+  background: url(../img/about-banner.webp); 
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
 
 @media (max-width: 960px){
 
