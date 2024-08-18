@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /404.php
+Disallow: /backend
+Disallow: /uploads
+//Host: https://bulat2005.ru
+//Sitemap: https://bulat2005.ru/sitemap.xml
