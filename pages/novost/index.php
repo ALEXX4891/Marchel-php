@@ -3,6 +3,8 @@ $title = 'Новость';
 $description = '';
 $keywords = '';
 include $_SERVER["DOCUMENT_ROOT"] . '/includes/head.php';
+$serviceId = (int)$_GET['id'];
+
 ?>
 
 <body class="news-item-page" data-page="novosti">
@@ -12,32 +14,29 @@ include $_SERVER["DOCUMENT_ROOT"] . '/includes/head.php';
   ?>
 
   <main class="main news-item-page__main">
+
+    <?
+    $result = mysqli_query($db, "SELECT * FROM news WHERE id = '{$serviceId}'");
+    $row = mysqli_fetch_array($result);
+    ?>
+
     <section class="news-item-page__section news-item-page__content content">
       <div class="content__container container">
 
         <div class="content__img-wrap">
-          <img alt="новость">
+          <img src="/img/<?= $row['photo'] ?>" alt="новость">
         </div>
 
         <p class="content__date">
-          22.05.2024
+          <?= $row['date'] ?>
         </p>
 
         <h1 class="content__title title title_big">
-          Заголовок новости в одну или две строки
+          <?= $row['name'] ?>
         </h1>
 
         <p class="content__text text">
-          С другой стороны, укрепление и развитие внутренней структуры однозначно определяет каждого участника как
-          способного принимать собственные решения касаемо кластеризации усилий.
-
-          С другой стороны, укрепление и развитие внутренней структуры однозначно определяет каждого участника как
-          способного принимать собственные решения касаемо кластеризации усилий.
-
-          С другой стороны, укрепление и развитие внутренней структуры однозначно определяет каждого участника как
-          способного принимать собственные решения касаемо кластеризации усилий.
-          С другой стороны, укрепление и развитие внутренней структуры однозначно определяет каждого участника как
-          способного принимать собственные решения касаемо кластеризации усилий.
+          <?= $row['text'] ?>
         </p>
 
       </div>
@@ -64,31 +63,36 @@ include $_SERVER["DOCUMENT_ROOT"] . '/includes/head.php';
 
         <div class="news__slider swiper">
           <ul class="news__card-wrap swiper-wrapper">
-            <li class="news__card swiper-slide">
-              <div class="news__card-img-wrap">
-                <picture>
-                  <source srcset="img/news-img.webp" type="image/webp"><img class="news__card-img" src="img/news-img.jpg" alt="новость" />
-                </picture>
-              </div>
-              <p class="news__card-date">
-                22.05.2024
-              </p>
-              <h3 class="news__card-title">
-                Заголовок новости в одну или две строки
-              </h3>
-              <p class="news__text text">
-                С другой стороны, укрепление и развитие внутренней структуры однозначно определяет каждого участника как
-                способного принимать собственные решения касаемо кластеризации усилий.
-              </p>
-              <a class="news__card-link" href="news-item.html">
-                <p class="news__link-title">
-                  Читать новость
-                </p>
-                <svg width="30" height="27" viewBox="0 0 30 27" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M10 13.5H19.5M19.5 13.5L15.5 10M19.5 13.5L15.5 17" stroke="#777E85" />
-                </svg>
-              </a>
-            </li>
+          <?
+            $result = mysqli_query($db, "SELECT * FROM news ORDER BY DATE DESC LIMIT 3");
+            $row = mysqli_fetch_array($result);
+
+            if (mysqli_num_rows($result) > 0) {
+              do {
+                echo '
+                <li class="news__card swiper-slide">
+                  <div class="news__card-img-wrap">
+                    <img class="news__card-img" src="/img/' . $row['photo'] . '" alt="' . $row['title'] . '" />
+                  </div>
+                  <p class="news__card-date">
+                    ' . $row['date'] . '
+                  </p>
+                  <h3 class="news__card-title">
+                    ' . $row['title'] . '
+                  </h3>
+                  <a class="news__card-link" href="/pages/novost/?id=' . $row['id'] . '">
+                    <p class="news__link-title">
+                      Читать новость
+                    </p>
+                    <svg width="30" height="27" viewBox="0 0 30 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M10 13.5H19.5M19.5 13.5L15.5 10M19.5 13.5L15.5 17" stroke="#777E85" />
+                    </svg>
+                  </a>
+                </li>
+                ';
+              } while ($row = mysqli_fetch_array($result));
+            }
+            ?>
           </ul>
 
           <div class="news__slider-pagination swiper-pagination">

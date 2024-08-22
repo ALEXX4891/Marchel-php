@@ -4377,7 +4377,7 @@ a {
 }
 
 .services-page .services-page__container .services .services__container .services__btn {
-  display: none;
+  /* display: none; */
 }
 
 .services-page .services-page__container .services .services__container .services__not-found {
@@ -4788,7 +4788,7 @@ a {
   transition: fill 0.3s ease-in-out;
 }
 
-.contacts-page .contacts__container .contacts__geo-card-wrap .contacts__geo-card .contacts__geo-link:hover.contacts__geo-link_telegram telegram-info svg path {
+.contacts-page .contacts__container .contacts__geo-card-wrap .contacts__geo-card .contacts__geo-link:hover.contacts__geo-link_telegram svg path {
   fill: #36b7ff;
 }
 

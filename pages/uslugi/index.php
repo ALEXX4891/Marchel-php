@@ -47,6 +47,47 @@ include $_SERVER["DOCUMENT_ROOT"] . '/includes/head.php';
 
               </li>
 
+              <?
+              // // $limit = (int)$_POST['limit'];    
+              // // if ($limit == 0) {
+              // //   $limit = 8;
+              // // }          
+              // // $result = mysqli_query($db, "SELECT * FROM services ORDER BY RAND() LIMIT " . $limit);
+              // $result = mysqli_query($db, "SELECT * FROM services");
+              // $arr = [];
+              // // for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+              // //   $arr[] = mysqli_fetch_assoc($result);
+              // // }
+              // //собираем все данные в один массив
+              // foreach ($result as $row) {
+              //   $arr[] = $row['type'];
+              // }
+      
+              // $arr = array_unique($arr);
+              // echo '<pre>';
+              // print_r($arr);
+              // echo '</pre>';
+
+              // if (mysqli_num_rows($result) > 0) {
+              //   do {
+              //     echo '
+              //       <li class="services__card" data-service="' . $row['type'] . '" data-name="' . $row['name'] . '">
+              //         <img class="services__img" src="/img/' . $row['photo'] . '" alt="' . $row['name'] . '" />
+
+              //         <a class="services__card-link" href="/pages/usluga/?id=' . $row['id'] . '">
+              //           <p class="services__card-title">' . $row['name'] . '</p>
+              //           <svg width="17" height="15" viewBox="0 0 17 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+              //             <path
+              //               d="M16.9884 3.15206C17.0724 2.60619 16.6979 2.09561 16.1521 2.01163L7.25671 0.643113C6.71085 0.559134 6.20026 0.933565 6.11628 1.47943C6.03231 2.02529 6.40674 2.53588 6.9526 2.61986L14.8596 3.83631L13.6431 11.7433C13.5591 12.2891 13.9336 12.7997 14.4794 12.8837C15.0253 12.9677 15.5359 12.5933 15.6199 12.0474L16.9884 3.15206ZM1.59136 14.8064L16.5914 3.8064L15.4086 2.19359L0.408636 13.1936L1.59136 14.8064Z"
+              //               fill="white" />
+              //           </svg>
+              //         </a>
+              //       </li>
+              //       ';
+              //   } while ($row = mysqli_fetch_array($result));
+              // }
+              ?>
+
               <li class="filter__item">
                 <button class="filter__link" data-service="Срочный ремонт">
                   <p class="filter__link-title">
@@ -127,16 +168,117 @@ include $_SERVER["DOCUMENT_ROOT"] . '/includes/head.php';
           </div>
         </article>
 
+        <?
+        $result = mysqli_query($db, "SELECT * FROM services ORDER BY RAND()");
+        $arr = [];
+        // for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+        //   $arr[] = mysqli_fetch_assoc($result);
+        // }
+        //собираем все данные в один массив
+        foreach ($result as $row) {
+          $arr[] = $row;
+        }
+
+        $json = json_encode($arr);
+        // echo '<pre>';
+        // print_r($arr);
+        // echo '</pre>';
+
+        // $row = mysqli_fetch_array($result);
+
+        // if (mysqli_num_rows($result) > 0) {
+        //   do {
+        //     echo '
+        //             <li class="services__card" data-service="' . $row['type'] . '">
+        //               <img class="services__img" src="/img/' . $row['photo'] . '" alt="' . $row['name'] . '" />
+
+        //               <a class="services__card-link" href="/pages/usluga/?id=' . $row['id'] . '">
+        //                 <p class="services__card-title">' . $row['name'] . '</p>
+        //                 <svg width="17" height="15" viewBox="0 0 17 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+        //                   <path
+        //                     d="M16.9884 3.15206C17.0724 2.60619 16.6979 2.09561 16.1521 2.01163L7.25671 0.643113C6.71085 0.559134 6.20026 0.933565 6.11628 1.47943C6.03231 2.02529 6.40674 2.53588 6.9526 2.61986L14.8596 3.83631L13.6431 11.7433C13.5591 12.2891 13.9336 12.7997 14.4794 12.8837C15.0253 12.9677 15.5359 12.5933 15.6199 12.0474L16.9884 3.15206ZM1.59136 14.8064L16.5914 3.8064L15.4086 2.19359L0.408636 13.1936L1.59136 14.8064Z"
+        //                     fill="white" />
+        //                 </svg>
+        //               </a>
+        //             </li>
+        //             ';
+        //   } while ($row = mysqli_fetch_array($result));
+        // }
+        ?>
+
+
+
         <article class="services-page__services services">
 
           <div class="services__container">
 
             <ul class="services__card-wrap">
+              <?
+              // $limit = (int)$_POST['limit'];    
+              // if ($limit == 0) {
+              //   $limit = 8;
+              // }          
+              // $result = mysqli_query($db, "SELECT * FROM services ORDER BY RAND() LIMIT " . $limit);
+              $result = mysqli_query($db, "SELECT * FROM services ORDER BY RAND()");
+
+              $row = mysqli_fetch_array($result);
+
+              if (mysqli_num_rows($result) > 0) {
+                do {
+                  echo '
+                    <li class="services__card" data-service="' . $row['type'] . '" data-name="' . $row['name'] . '">
+                      <img class="services__img" src="/img/' . $row['photo'] . '" alt="' . $row['name'] . '" />
+
+                      <a class="services__card-link" href="/pages/usluga/?id=' . $row['id'] . '">
+                        <p class="services__card-title">' . $row['name'] . '</p>
+                        <svg width="17" height="15" viewBox="0 0 17 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M16.9884 3.15206C17.0724 2.60619 16.6979 2.09561 16.1521 2.01163L7.25671 0.643113C6.71085 0.559134 6.20026 0.933565 6.11628 1.47943C6.03231 2.02529 6.40674 2.53588 6.9526 2.61986L14.8596 3.83631L13.6431 11.7433C13.5591 12.2891 13.9336 12.7997 14.4794 12.8837C15.0253 12.9677 15.5359 12.5933 15.6199 12.0474L16.9884 3.15206ZM1.59136 14.8064L16.5914 3.8064L15.4086 2.19359L0.408636 13.1936L1.59136 14.8064Z"
+                            fill="white" />
+                        </svg>
+                      </a>
+                    </li>
+                    ';
+                } while ($row = mysqli_fetch_array($result));
+              }
+              ?>
             </ul>
 
-            <button class="services__btn">
+            <button class="services__btn" onclick="showMore()">
               Ещё услуги
             </button>
+
+            <script>
+              let limit = 8;
+
+              function showCards() {
+                const cardWrap = document.querySelector('.services__card-wrap');
+                const cards = cardWrap.children;
+                for (let i = 0; i < cards.length; i++) {
+                  cards[i].style.display = 'none';
+                }    
+                for (let i = 0; i < limit; i++) {
+                  cards[i].style.display = 'block';
+                }                
+              }
+              showCards();
+
+              function showMore() {
+                limit += 4;
+                const cardWrap = document.querySelector('.services__card-wrap');
+                const cards = cardWrap.children;
+                let btn = document.querySelector('.services__btn');
+
+                for (let i = 0; i < limit; i++) {
+                  let card = cardWrap.children[i];
+                  card.style.display = 'block';
+                }
+
+                if (limit >= cards.length) {
+                  btn.style.display = 'none';
+                }
+              }
+            </script>
 
             <span class="services__not-found">
               По вашему запросу ничего не найдено
@@ -157,6 +299,178 @@ include $_SERVER["DOCUMENT_ROOT"] . '/includes/head.php';
       Вызвать помощь
     </button>
   </div>
+
+  <script>
+    const data = <?= $json ?>;
+    // console.log(data);
+    const filter = document.querySelector(".services-page__filter");
+
+
+    if (filter) {
+      const filterDropdown = filter.querySelector(".filter__dropdown");
+      const hints = new Set(data.map((item) => item.name));
+
+      hints.forEach((hint) => {
+        const option = document.createElement("option");
+        const filterHint = document.createElement("li");
+        filterHint.classList.add("filter__dropdown-item");
+        filterHint.innerHTML = hint;
+        filterDropdown.append(filterHint);
+
+      });
+
+      filterInit();
+
+      function filterInit() {
+        const filterItems = document.querySelectorAll(".filter__link");
+        const cards = document.querySelectorAll(".services__card");
+        let id = "";
+        let cardsLength = cards.length;
+        const notFoundMessage = document.querySelector(".services__not-found");
+        const addServToShowBtn = document.querySelector(".services__btn");
+
+        const input = document.querySelector(".filter__input");
+        const inputSearchBtn = document.querySelector(".filter__icon_search");
+        const inputCloseBtn = document.querySelector(".filter__icon_close");
+        const filterDropdownList = document.querySelector(".filter__dropdown");
+        const filterDropdownItems = document.querySelectorAll(
+          ".filter__dropdown-item"
+        );
+
+        filterItems.forEach((item) => {
+          item.addEventListener("click", function(e) {
+            cardsLength = 0;
+            id = item.getAttribute("data-service");
+            render(cards, id, "type");
+            clearSearchInput();
+            addServToShowBtn.style.display = "none";
+          });
+        });
+
+        input.addEventListener("input", function(e) {
+          cardsLength = 0;
+          addServToShowBtn.style.display = "none";
+          render(cards, input.value, "name");
+          filterDropdownList.classList.add("filter__dropdown_active");
+          filterDropdownList.innerHTML = "";
+
+          filterDropdownItems.forEach((item) => {
+            if (item.innerText.toLowerCase().includes(e.target.value.toLowerCase())) {
+              filterDropdownList.append(item);
+            }
+          });
+
+          if (e.target.value == "") {
+            filterDropdownList.classList.remove("filter__dropdown_active");
+            clearSearchInput();
+          }
+        });
+
+        filterDropdownItems.forEach((item) => {
+          item.addEventListener("click", function(e) {
+            console.log('тест');
+            input.value = e.target.innerText.trim();
+            searchInput();
+            render(cards, input.value, "name-strict");
+            addServToShowBtn.style.display = "none";
+
+          });
+        });
+
+        inputSearchBtn.addEventListener("click", function(e) {
+
+          render(cards, input.value, "name");
+          searchInput();
+
+        });
+
+        document.addEventListener("keydown", function(e) {
+          if (e.key === "Enter") {
+            render(cards, input.value, "name");
+            searchInput();
+          }
+
+        });
+
+        inputCloseBtn.addEventListener("click", function(e) {
+          clearSearchInput();
+          showCards();
+        });
+
+        function render(cards, id, mode) {
+          const notFoundMessage = document.querySelector(".services__not-found");
+
+          cardsLength = 0;
+          if (mode == "name") {
+            cards.forEach((item) => {
+              if (item.getAttribute("data-name").includes(id)) {
+                item.style.display = "block";
+                cardsLength++;
+              } else {
+                item.style.display = "none";
+              }
+            });
+          }
+
+          if (mode == "name-strict") {
+            cards.forEach((item) => {
+              if (id === item.getAttribute("data-name")) {
+                item.style.display = "block";
+                cardsLength++;
+              } else {
+                item.style.display = "none";
+              }
+            });
+          }
+
+          if (mode == "type") {
+            cards.forEach((item) => {
+              if (id === item.getAttribute("data-service")) {
+                item.style.display = "block";
+                cardsLength++;
+              } else {
+                item.style.display = "none";
+              }
+            });
+          }
+
+
+          if (cardsLength == 0) {
+            notFoundMessage.style.display = "block";
+          } else {
+            notFoundMessage.style.display = "none";
+          }
+        }
+
+        function clearSearchInput() {
+          input.value = "";
+          filterDropdownList.classList.remove("filter__dropdown_active");
+          inputSearchBtn.style.display = "block";
+          inputCloseBtn.style.display = "none";
+          addServToShowBtn.style.display = "block";
+
+        }
+
+        function searchInput() {
+          filterDropdownList.classList.remove("filter__dropdown_active");
+          inputSearchBtn.style.display = "none";
+          inputCloseBtn.style.display = "block";
+          addServToShowBtn.style.display = "none";
+
+        }
+
+        // function addServToShow() {
+        //   addServToShowBtn.addEventListener("click", function(e) {
+        //     cards.forEach((item) => {
+        //       item.style.display = "block";
+        //     });
+        //   });
+        // }
+
+
+      }
+    }
+  </script>
 
 </body>
 

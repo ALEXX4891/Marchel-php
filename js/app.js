@@ -698,30 +698,30 @@ let optionsServices = {
 //     newsCardWrap.append(card);
 //   });
 
-//   new Swiper(".news__slider", {
-//     direction: "horizontal",
-//     slidesPerView: 3, 
+  new Swiper(".news__slider", {
+    direction: "horizontal",
+    slidesPerView: 3, 
 
-//     spaceBetween: 19,
-//     grabCursor: true, 
-//     watchOverflow: true, 
+    spaceBetween: 19,
+    grabCursor: true, 
+    watchOverflow: true, 
 
-//     pagination: {
-//       el: ".swiper-pagination",
-//       clickable: true,
-//     },
-//     breakpoints: {
-//       0: {
-//         slidesPerView: 1,
-//       },
-//       500: {
-//         slidesPerView: 2,
-//       },
-//       800: {
-//         slidesPerView: 3,
-//       },
-//     },
-//   });
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    breakpoints: {
+      0: {
+        slidesPerView: 1,
+      },
+      500: {
+        slidesPerView: 2,
+      },
+      800: {
+        slidesPerView: 3,
+      },
+    },
+  });
 
 //   const newsItemPage = document.querySelector(".news-item-page");
 //   if (newsItemPage) {
@@ -742,87 +742,90 @@ let optionsServices = {
 //   }
 // }
 
+// ---------------------------------- start отправка и валидация формы ----------------------------------
 
-// const formAll = document.querySelectorAll(".main-form");
+const formAll = document.querySelectorAll(".main-form");
 
-// if (formAll) {
-//   formAll.forEach((form) => {
-//     form.addEventListener("submit", sendForm);
+if (formAll) {
+  formAll.forEach((form) => {
+    form.addEventListener("submit", sendForm);
 
-//     async function sendForm(e) {
-//       e.preventDefault();
+    async function sendForm(e) {
+      e.preventDefault();
 
-//       let errore = formvalidation(form); 
+      let errore = formvalidation(form); 
 
-//       if (errore === 0) {
-//         form.classList.add("_sending");
-//         let formData = new FormData(form);
+      if (errore === 0) {
+        form.classList.add("_sending");
+        let formData = new FormData(form);
 
 
-//         let response = await fetch("files/post-mail.php", {
-//           method: "POST",
-//           body: formData, 
-//         });
+        let response = await fetch("files/post-mail.php", {
+          method: "POST",
+          body: formData, 
+        });
 
-//         if (response.ok) {
-//           let result = await response.json(); 
-//           form.reset(); 
-//           popupOpen(document.getElementById("success"));
-//           form.classList.remove("_sending");
-//         } else {
-//           popupOpen(document.getElementById("error"));
-//           form.classList.remove("_sending");
-//         }
+        if (response.ok) {
+          let result = await response.json(); 
+          form.reset(); 
+          popupOpen(document.getElementById("success"));
+          form.classList.remove("_sending");
+        } else {
+          popupOpen(document.getElementById("error"));
+          form.classList.remove("_sending");
+        }
 
-//       } else {
-//         alert("Заполните обязательные поля");
-//       }
+      } else {
+        alert("Заполните обязательные поля");
+      }
 
-//     }
-//   });
+    }
+  });
 
-//   function formvalidation(item) {
-//     let error = 0;
-//     let formReq = item.querySelectorAll("._req");
+  function formvalidation(item) {
+    let error = 0;
+    let formReq = item.querySelectorAll("._req");
 
-//     for (let index = 0; index < formReq.length; index++) {
-//       const input = formReq[index];
+    for (let index = 0; index < formReq.length; index++) {
+      const input = formReq[index];
 
-//       formRemoveError(input); 
+      formRemoveError(input); 
 
-//       if (input.classList.contains("_email")) {
-//         if (emailTest(input)) {
-//           formAddError(input);
-//           error++;
-//         }
-//       } else if (
-//         input.getAttribute("type") === "checkbox" &&
-//         input.checked === false
-//       ) {
-//         formAddError(input);
-//         error++;
-//       } else {
-//         if (input.value === "") {
-//           formAddError(input);
-//           error++;
-//         }
-//       }
-//     }
-//     return error;
-//   }
+      if (input.classList.contains("_email")) {
+        if (emailTest(input)) {
+          formAddError(input);
+          error++;
+        }
+      } else if (
+        input.getAttribute("type") === "checkbox" &&
+        input.checked === false
+      ) {
+        formAddError(input);
+        error++;
+      } else {
+        if (input.value === "") {
+          formAddError(input);
+          error++;
+        }
+      }
+    }
+    return error;
+  }
 
-//   function formAddError(input) {
-//     input.parentElement.classList.add("_error");
-//     input.classList.add("_error");
-//   }
+  function formAddError(input) {
+    input.parentElement.classList.add("_error");
+    input.classList.add("_error");
+  }
 
-//   function formRemoveError(input) {
-//     input.parentElement.classList.remove("_error");
-//     input.classList.remove("_error");
-//   }
+  function formRemoveError(input) {
+    input.parentElement.classList.remove("_error");
+    input.classList.remove("_error");
+  }
 
-//   function emailTest(input) {
-//     return !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/.test(input.value);
-//   }
-// }
+  function emailTest(input) {
+    return !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/.test(input.value);
+  }
+}
+
+// ---------------------------------- end отправка и валидация формы ----------------------------------
 
