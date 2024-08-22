@@ -28,7 +28,7 @@ $serviceId = (int)$_GET['id'];
         </div>
 
         <p class="content__date">
-          <?= $row['date'] ?>
+          <?= date("d.m.Y", strtotime($row['date'])) ?>
         </p>
 
         <h1 class="content__title title title_big">
@@ -63,7 +63,7 @@ $serviceId = (int)$_GET['id'];
 
         <div class="news__slider swiper">
           <ul class="news__card-wrap swiper-wrapper">
-          <?
+            <?
             $result = mysqli_query($db, "SELECT * FROM news ORDER BY DATE DESC LIMIT 3");
             $row = mysqli_fetch_array($result);
 
@@ -75,7 +75,7 @@ $serviceId = (int)$_GET['id'];
                     <img class="news__card-img" src="/img/' . $row['photo'] . '" alt="' . $row['title'] . '" />
                   </div>
                   <p class="news__card-date">
-                    ' . $row['date'] . '
+                    ' . date("d.m.Y", strtotime($row['date'])) . '
                   </p>
                   <h3 class="news__card-title">
                     ' . $row['title'] . '

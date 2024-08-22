@@ -9,7 +9,7 @@
       </p>
 
       <div class="popup-success__img-wrap">
-        <img class="popup-success__img" src="img/like.svg" alt="success">
+        <img class="popup-success__img" src="/img/like.svg" alt="success">
       </div>
       <button class="popup__close popup-close">
         <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">

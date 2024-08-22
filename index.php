@@ -34,7 +34,7 @@ include $_SERVER["DOCUMENT_ROOT"] . '/includes/head.php';
 
         <div class="advantages__card">
           <div class="advantages__img-wrap">
-            <img src="img/adv-img-1.svg" alt="приемущество">
+            <img src="/img/adv-img-1.svg" alt="приемущество">
           </div>
           <h4 class="advantages__title">
             Круглосуточно
@@ -46,7 +46,7 @@ include $_SERVER["DOCUMENT_ROOT"] . '/includes/head.php';
 
         <div class="advantages__card">
           <div class="advantages__img-wrap">
-            <img src="img/adv-img-2.svg" alt="приемущество">
+            <img src="/img/adv-img-2.svg" alt="приемущество">
           </div>
           <h4 class="advantages__title">
             Быстро
@@ -58,7 +58,7 @@ include $_SERVER["DOCUMENT_ROOT"] . '/includes/head.php';
 
         <div class="advantages__card">
           <div class="advantages__img-wrap">
-            <img src="img/adv-img-3.svg" alt="приемущество">
+            <img src="/img/adv-img-3.svg" alt="приемущество">
           </div>
           <h4 class="advantages__title">
             Качественно

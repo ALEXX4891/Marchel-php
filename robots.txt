@@ -2,5 +2,7 @@ User-agent: *
 Disallow: /404.php
 Disallow: /backend
 Disallow: /uploads
-//Host: https://bulat2005.ru
-//Sitemap: https://bulat2005.ru/sitemap.xml
+Disallow: /files
+
+//Host: https://web5943.ww.net.ru
+//Sitemap: https://web5943.ww.net.ru/sitemap.xml

@@ -153,7 +153,7 @@ include $_SERVER["DOCUMENT_ROOT"] . '/includes/head.php';
                     <img class="news__card-img" src="/img/' . $row['photo'] . '" alt="' . $row['title'] . '" />
                   </div>
                   <p class="news__card-date">
-                    ' . $row['date'] . '
+                    ' . date("d.m.Y", strtotime($row['date'])) . '
                   </p>
                   <h3 class="news__card-title">
                     ' . $row['title'] . '

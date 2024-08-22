@@ -118,6 +118,3 @@ include '' . $_SERVER["DOCUMENT_ROOT"] . '/includes/popup.php';
 <script src="/js/lib/jquery.maskedinput.min.js"></script>
 <script type="module" src="/js/app.js"></script>
 
-</body>
-
-</html>

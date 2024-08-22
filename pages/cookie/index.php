@@ -2,6 +2,8 @@
 $title = 'Политика использования cookie-файлов';
 $description = '';
 $keywords = '';
+$meta = '<meta name="robots" content="noindex, nofollow">';
+
 include $_SERVER["DOCUMENT_ROOT"] . '/includes/head.php';
 ?>
 

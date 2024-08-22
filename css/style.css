@@ -1857,7 +1857,7 @@ a {
   display: grid;
   -ms-grid-columns: 1fr;
   grid-template-columns: 1fr;
-  -ms-grid-rows: (1fr)[4];
+  /* -ms-grid-rows: (1fr)[4]; */
   grid-template-rows: repeat(4, 1fr);
   -webkit-box-align: start;
       -ms-flex-align: start;
@@ -4474,6 +4474,10 @@ a {
   color: #30373d;
 }
 
+.article {
+  display: none;
+}
+ 
 .services-item-page .article .article__container {
   display: -ms-grid;
   display: grid;

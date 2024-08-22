@@ -2,6 +2,7 @@
 $title = 'Ошибка 404';
 $description = '';
 $keywords = '';
+$meta = '<meta name="robots" content="noindex, nofollow">';
 include $_SERVER["DOCUMENT_ROOT"] . '/includes/head.php';
 ?>
 

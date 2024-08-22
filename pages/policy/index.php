@@ -2,10 +2,11 @@
 $title = 'Политика компании в отношении обработки персональных данных';
 $description = '';
 $keywords = '';
+$meta = '<meta name="robots" content="noindex, nofollow">';
 include $_SERVER["DOCUMENT_ROOT"] . '/includes/head.php';
 ?>
 
-<body>
+<body class="page">
 
   <?php
   include $_SERVER["DOCUMENT_ROOT"] . '/includes/header.php';

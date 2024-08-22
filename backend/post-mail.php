@@ -16,21 +16,16 @@ $mail->setFrom('admin@marchel.ru', 'Автопомощь');
 
 // кому письмо
 $recipients = [
-  'alexx4891@mail.ru' => 'Person One',
-  'alexx4891@yandex.ru' => 'Person Two',
+  'direktor-info.alfa@yandex.ru' => 'Person One',
+  // 'direktor-info.alfa@yandex.ru' => 'Person Two',
 ];
 
 foreach ($recipients as $email => $name) {
   $mail->addAddress($email, $name);
 }
 
-// $mail->addAddress('alexx4891@mail.ru');
-// $mail->addAddress('alexx4891@yandex.ru');
-
-
 //Добавляет адрес кому отправится скрытая копия:
 // $mailer->AddBCC('Ящик 3'); 
-
 
 // тема письма
 $mail->Subject = 'Заявка с marchel.ru';
