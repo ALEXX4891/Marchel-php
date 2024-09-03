@@ -62,7 +62,7 @@ include $_SERVER["DOCUMENT_ROOT"] . '/includes/head.php';
               // foreach ($result as $row) {
               //   $arr[] = $row['type'];
               // }
-      
+
               // $arr = array_unique($arr);
               // echo '<pre>';
               // print_r($arr);
@@ -166,7 +166,14 @@ include $_SERVER["DOCUMENT_ROOT"] . '/includes/head.php';
               </li>
             </ul>
           </div>
+          <button class="filter-back" style="display: none">
+            <svg width="11" height="9" viewBox="0 0 11 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0.5 4.5H10M10 4.5L6 1M10 4.5L6 8" stroke="#777E85"></path>
+            </svg>
+            <p>Фильтр</p>
+          </button>
         </article>
+
 
         <?
         $result = mysqli_query($db, "SELECT * FROM services ORDER BY RAND()");
@@ -248,38 +255,6 @@ include $_SERVER["DOCUMENT_ROOT"] . '/includes/head.php';
               Ещё услуги
             </button>
 
-            <script>
-              let limit = 8;
-
-              function showCards() {
-                const cardWrap = document.querySelector('.services__card-wrap');
-                const cards = cardWrap.children;
-                for (let i = 0; i < cards.length; i++) {
-                  cards[i].style.display = 'none';
-                }    
-                for (let i = 0; i < limit; i++) {
-                  cards[i].style.display = 'block';
-                }                
-              }
-              showCards();
-
-              function showMore() {
-                limit += 4;
-                const cardWrap = document.querySelector('.services__card-wrap');
-                const cards = cardWrap.children;
-                let btn = document.querySelector('.services__btn');
-
-                for (let i = 0; i < limit; i++) {
-                  let card = cardWrap.children[i];
-                  card.style.display = 'block';
-                }
-
-                if (limit >= cards.length) {
-                  btn.style.display = 'none';
-                }
-              }
-            </script>
-
             <span class="services__not-found">
               По вашему запросу ничего не найдено
             </span>
@@ -301,6 +276,65 @@ include $_SERVER["DOCUMENT_ROOT"] . '/includes/head.php';
   </div>
 
   <script>
+    let limit = 6;
+
+    function showCards() {
+      const cardWrap = document.querySelector('.services__card-wrap');
+      const cards = cardWrap.children;
+      for (let i = 0; i < cards.length; i++) {
+        cards[i].style.display = 'none';
+      }
+      for (let i = 0; i < limit; i++) {
+        if (cards[i]) {
+          cards[i].style.display = 'block';
+          // console.log(cards[i]);
+        }
+      }
+    }
+    showCards();
+
+    function hideFilter() {
+      const filter = document.querySelector('.filter__container');
+      const link = document.querySelector('.filter-back');
+      filter.style.display = 'none';
+      link.style.display = 'grid';
+    }
+
+    function showFilter() {
+      const filter = document.querySelector('.filter__container');
+      const link = document.querySelector('.filter-back');
+      filter.style.display = 'block';
+      link.style.display = 'none';
+    }
+
+    function setLinkTitle(text) {
+      const link = document.querySelector('.filter-back').querySelector('p');
+      link.textContent = text;
+    }
+
+    // showFilter()
+
+    if (window.innerWidth < 850) {
+      hideFilter();
+    }
+
+    function showMore() {
+      limit += 6;
+      const cardWrap = document.querySelector('.services__card-wrap');
+      const cards = cardWrap.children;
+      let btn = document.querySelector('.services__btn');
+
+      for (let i = 0; i < limit; i++) {
+        let card = cardWrap.children[i];
+        card.style.display = 'block';
+      }
+
+      if (limit >= cards.length) {
+        btn.style.display = 'none';
+      }
+    }
+
+
     const data = <?= $json ?>;
     // console.log(data);
     const filter = document.querySelector(".services-page__filter");
@@ -336,6 +370,11 @@ include $_SERVER["DOCUMENT_ROOT"] . '/includes/head.php';
         const filterDropdownItems = document.querySelectorAll(
           ".filter__dropdown-item"
         );
+        const link = document.querySelector('.filter-back');
+
+        link.addEventListener("click", function(e) {
+          showFilter();
+        });
 
         filterItems.forEach((item) => {
           item.addEventListener("click", function(e) {
@@ -343,6 +382,8 @@ include $_SERVER["DOCUMENT_ROOT"] . '/includes/head.php';
             id = item.getAttribute("data-service");
             render(cards, id, "type");
             clearSearchInput();
+            hideFilter();
+            setLinkTitle(id);
             addServToShowBtn.style.display = "none";
           });
         });
@@ -360,6 +401,8 @@ include $_SERVER["DOCUMENT_ROOT"] . '/includes/head.php';
             }
           });
 
+          // hideFilter();
+          // setLinkTitle('фильтр');
           if (e.target.value == "") {
             filterDropdownList.classList.remove("filter__dropdown_active");
             clearSearchInput();
@@ -371,6 +414,10 @@ include $_SERVER["DOCUMENT_ROOT"] . '/includes/head.php';
             console.log('тест');
             input.value = e.target.innerText.trim();
             searchInput();
+            hideFilter();
+            setLinkTitle('фильтр');
+
+
             render(cards, input.value, "name-strict");
             addServToShowBtn.style.display = "none";
 
@@ -378,16 +425,18 @@ include $_SERVER["DOCUMENT_ROOT"] . '/includes/head.php';
         });
 
         inputSearchBtn.addEventListener("click", function(e) {
-
           render(cards, input.value, "name");
           searchInput();
-
+          hideFilter();
+          setLinkTitle('фильтр');
         });
 
         document.addEventListener("keydown", function(e) {
           if (e.key === "Enter") {
             render(cards, input.value, "name");
             searchInput();
+            hideFilter();
+            setLinkTitle('фильтр');
           }
 
         });

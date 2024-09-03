@@ -12,10 +12,10 @@ testWebP(function (support) {
   document.documentElement.classList.add(className);
 });
 
-const page = window.location.pathname.split("/").pop();
+const page = window.location.pathname;
 const navLinks = document.querySelectorAll(".nav__link");
 navLinks.forEach((item) => {
-  if (item.getAttribute("href").includes(page)) {
+  if (item.getAttribute("href") === page) {
     item.classList.add("nav__link_active");
   }
 });
@@ -165,145 +165,145 @@ if (previews) {
 
 
 
-function filterInit() {
-  const filterItems = document.querySelectorAll(".filter__link");
-  const cards = document.querySelectorAll(".services__card");
-  let id = "";
-  let cardsLength = cards.length;
-  const notFoundMessage = document.querySelector(".services__not-found");
-  const addServToShowBtn = document.querySelector(".services__btn");
+// function filterInit() {
+//   const filterItems = document.querySelectorAll(".filter__link");
+//   const cards = document.querySelectorAll(".services__card");
+//   let id = "";
+//   let cardsLength = cards.length;
+//   const notFoundMessage = document.querySelector(".services__not-found");
+//   const addServToShowBtn = document.querySelector(".services__btn");
 
-  const input = document.querySelector(".filter__input");
-  const inputSearchBtn = document.querySelector(".filter__icon_search");
-  const inputCloseBtn = document.querySelector(".filter__icon_close");
-  const filterDropdownList = document.querySelector(".filter__dropdown");
-  const filterDropdownItems = document.querySelectorAll(
-    ".filter__dropdown-item"
-  );
+//   const input = document.querySelector(".filter__input");
+//   const inputSearchBtn = document.querySelector(".filter__icon_search");
+//   const inputCloseBtn = document.querySelector(".filter__icon_close");
+//   const filterDropdownList = document.querySelector(".filter__dropdown");
+//   const filterDropdownItems = document.querySelectorAll(
+//     ".filter__dropdown-item"
+//   );
 
-  filterItems.forEach((item) => {
-    item.addEventListener("click", function (e) {
-      cardsLength = 0;
-      id = item.getAttribute("data-service");
-      render(cards, id, "type");
-      clearSearchInput();
-    });
-  });
+//   filterItems.forEach((item) => {
+//     item.addEventListener("click", function (e) {
+//       cardsLength = 0;
+//       id = item.getAttribute("data-service");
+//       render(cards, id, "type");
+//       clearSearchInput();
+//     });
+//   });
 
-  input.addEventListener("input", function (e) {
-    cardsLength = 0;
-    render(cards, input.value, "name");
-    filterDropdownList.classList.add("filter__dropdown_active");
-    filterDropdownList.innerHTML = "";
+//   input.addEventListener("input", function (e) {
+//     cardsLength = 0;
+//     render(cards, input.value, "name");
+//     filterDropdownList.classList.add("filter__dropdown_active");
+//     filterDropdownList.innerHTML = "";
 
-    filterDropdownItems.forEach((item) => {
-      if (item.innerText.toLowerCase().includes(e.target.value.toLowerCase())) {
-        filterDropdownList.append(item);
-      }
-    });
+//     filterDropdownItems.forEach((item) => {
+//       if (item.innerText.toLowerCase().includes(e.target.value.toLowerCase())) {
+//         filterDropdownList.append(item);
+//       }
+//     });
 
-    if (e.target.value == "") {
-      filterDropdownList.classList.remove("filter__dropdown_active");
-      clearSearchInput();
-    }
-  });
+//     if (e.target.value == "") {
+//       filterDropdownList.classList.remove("filter__dropdown_active");
+//       clearSearchInput();
+//     }
+//   });
 
-  filterDropdownItems.forEach((item) => {
-    item.addEventListener("click", function (e) {
+//   filterDropdownItems.forEach((item) => {
+//     item.addEventListener("click", function (e) {
 
-      input.value = e.target.innerText.trim();
-      searchInput();
-      render(cards, input.value, "name-strict");
-    });
-  });
+//       input.value = e.target.innerText.trim();
+//       searchInput();
+//       render(cards, input.value, "name-strict");
+//     });
+//   });
 
-  inputSearchBtn.addEventListener("click", function (e) {
+//   inputSearchBtn.addEventListener("click", function (e) {
 
-    render(cards, input.value, "name");
-    searchInput();
-  });
+//     render(cards, input.value, "name");
+//     searchInput();
+//   });
 
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "Enter") {
-      render(cards, input.value, "name");
-      searchInput();
-    }
+//   document.addEventListener("keydown", function (e) {
+//     if (e.key === "Enter") {
+//       render(cards, input.value, "name");
+//       searchInput();
+//     }
 
-  });
+//   });
 
-  inputCloseBtn.addEventListener("click", function (e) {
-    clearSearchInput();
-    cards.forEach((item) => {
-      item.style.display = "block";
-    });
-  });
+//   inputCloseBtn.addEventListener("click", function (e) {
+//     clearSearchInput();
+//     cards.forEach((item) => {
+//       item.style.display = "block";
+//     });
+//   });
 
-  function render(cards, id, mode) {
-    cardsLength = 0;
-    if (mode == "name") {
-      cards.forEach((item) => {
-        if (item.getAttribute("data-name").includes(id)) {
-          item.style.display = "block";
-          cardsLength++;
-        } else {
-          item.style.display = "none";
-        }
-      });
-    }
+//   function render(cards, id, mode) {
+//     cardsLength = 0;
+//     if (mode == "name") {
+//       cards.forEach((item) => {
+//         if (item.getAttribute("data-name").includes(id)) {
+//           item.style.display = "block";
+//           cardsLength++;
+//         } else {
+//           item.style.display = "none";
+//         }
+//       });
+//     }
 
-    if (mode == "name-strict") {
-      cards.forEach((item) => {
-        if (id === item.getAttribute("data-name")) {
-          item.style.display = "block";
-          cardsLength++;
-        } else {
-          item.style.display = "none";
-        }
-      });
-    }
+//     if (mode == "name-strict") {
+//       cards.forEach((item) => {
+//         if (id === item.getAttribute("data-name")) {
+//           item.style.display = "block";
+//           cardsLength++;
+//         } else {
+//           item.style.display = "none";
+//         }
+//       });
+//     }
 
-    if (mode == "type") {
-      cards.forEach((item) => {
-        if (id === item.getAttribute("data-service")) {
-          item.style.display = "block";
-          cardsLength++;
-        } else {
-          item.style.display = "none";
-        }
-      });
-    }
-
-
-    if (cardsLength == 0) {
-      notFoundMessage.style.display = "block";
-    } else {
-      notFoundMessage.style.display = "none";
-    }
-  }
-
-  function clearSearchInput() {
-    input.value = "";
-    filterDropdownList.classList.remove("filter__dropdown_active");
-    inputSearchBtn.style.display = "block";
-    inputCloseBtn.style.display = "none";
-  }
-
-  function searchInput() {
-    filterDropdownList.classList.remove("filter__dropdown_active");
-    inputSearchBtn.style.display = "none";
-    inputCloseBtn.style.display = "block";
-  }
-
-  function addServToShow() {
-    addServToShowBtn.addEventListener("click", function (e) {
-      cards.forEach((item) => {
-        item.style.display = "block";
-      });
-    });
-  }
+//     if (mode == "type") {
+//       cards.forEach((item) => {
+//         if (id === item.getAttribute("data-service")) {
+//           item.style.display = "block";
+//           cardsLength++;
+//         } else {
+//           item.style.display = "none";
+//         }
+//       });
+//     }
 
 
-}
+//     if (cardsLength == 0) {
+//       notFoundMessage.style.display = "block";
+//     } else {
+//       notFoundMessage.style.display = "none";
+//     }
+//   }
+
+//   function clearSearchInput() {
+//     input.value = "";
+//     filterDropdownList.classList.remove("filter__dropdown_active");
+//     inputSearchBtn.style.display = "block";
+//     inputCloseBtn.style.display = "none";
+//   }
+
+//   function searchInput() {
+//     filterDropdownList.classList.remove("filter__dropdown_active");
+//     inputSearchBtn.style.display = "none";
+//     inputCloseBtn.style.display = "block";
+//   }
+
+//   function addServToShow() {
+//     addServToShowBtn.addEventListener("click", function (e) {
+//       cards.forEach((item) => {
+//         item.style.display = "block";
+//       });
+//     });
+//   }
+
+
+// }
 
 
 const burger = document.querySelector(".burger");
@@ -582,7 +582,7 @@ let optionsServices = {
 
 // function getServicesCard(item) {
 //   return `
-//   <img class="services__img" src="img/${item.photo}" alt="${item.name}">
+//   <img class="services__img" src="/img/${item.photo}" alt="${item.name}">
   
 //   <a class="services__card-link" href="services-item.html?id=${item.id}">
 //   <p class="services__card-title">
@@ -653,7 +653,7 @@ let optionsServices = {
 //   function getNewsCard(item) {
 //     return `
 //       <div class="news__card-img-wrap">
-//         <img class="news__card-img" src="img/${item.photo}" alt="${item.name}">
+//         <img class="news__card-img" src="/img/${item.photo}" alt="${item.name}">
 //       </div>
 //       <p class="news__card-date">
 //         ${item.date}
@@ -742,7 +742,6 @@ let optionsServices = {
 //   }
 // }
 
-// ---------------------------------- start отправка и валидация формы ----------------------------------
 
 const formAll = document.querySelectorAll(".main-form");
 
@@ -760,7 +759,7 @@ if (formAll) {
         let formData = new FormData(form);
 
 
-        let response = await fetch("files/post-mail.php", {
+        let response = await fetch("/backend/post-mail.php", {
           method: "POST",
           body: formData, 
         });
@@ -826,6 +825,4 @@ if (formAll) {
     return !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/.test(input.value);
   }
 }
-
-// ---------------------------------- end отправка и валидация формы ----------------------------------
 

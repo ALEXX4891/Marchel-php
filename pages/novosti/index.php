@@ -22,22 +22,22 @@ include $_SERVER["DOCUMENT_ROOT"] . '/includes/head.php';
         <ul class="news__card-wrap">
         <?
             $result = mysqli_query($db, "SELECT * FROM news ORDER BY DATE DESC");
-            $row = mysqli_fetch_array($result);
+            $news = mysqli_fetch_array($result);
 
             if (mysqli_num_rows($result) > 0) {
               do {
                 echo '
                 <li class="news__card">
                   <div class="news__card-img-wrap">
-                    <img class="news__card-img" src="/img/' . $row['photo'] . '" alt="' . $row['title'] . '" />
+                    <img class="news__card-img" src="/img/' . $news['photo'] . '" alt="' . $news['title'] . '" />
                   </div>
                   <p class="news__card-date">
-                    ' . date("d.m.Y", strtotime($row['date'])) . '
+                    ' . date("d.m.Y", strtotime($news['date'])) . '
                   </p>
                   <h3 class="news__card-title">
-                    ' . $row['title'] . '
+                    ' . $news['title'] . '
                   </h3>
-                  <a class="news__card-link" href="/pages/novost/?id=' . $row['id'] . '">
+                  <a class="news__card-link" href="/pages/novost/?id=' . $news['id'] . '">
                     <p class="news__link-title">
                       Читать новость
                     </p>
@@ -47,7 +47,7 @@ include $_SERVER["DOCUMENT_ROOT"] . '/includes/head.php';
                   </a>
                 </li>
                 ';
-              } while ($row = mysqli_fetch_array($result));
+              } while ($news = mysqli_fetch_array($result));
             }
             ?>
         </ul>

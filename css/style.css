@@ -7276,3 +7276,28 @@ a {
 
   .webp .about-us-page .banner{ background: url(../img/about-banner_sm.webp); }
 }
+
+.filter-back {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: start;
+  align-items: center;
+  align-content: center;
+  
+  gap: 10px;
+}
+
+.filter-back svg {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 10px;
+  transform: rotate(180deg);
+}
+
+.filter-back p {
+  font-family: Roboto;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 18.75px;
+    color: #30373d;
+}
