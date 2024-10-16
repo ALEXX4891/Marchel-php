@@ -3408,13 +3408,14 @@ a {
   display: -ms-grid;
   display: grid;
   -ms-flex-line-pack: start;
-      align-content: start;
+  align-content: start;
   gap: 24px;
   min-height: 373px;
   height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
   width: auto;
+  max-width: 386px;
 }
 
 .news-page .news .news__container .news__card-wrap .news__card .news__card-img-wrap {

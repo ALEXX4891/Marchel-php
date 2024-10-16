@@ -164,6 +164,17 @@ include $_SERVER["DOCUMENT_ROOT"] . '/includes/head.php';
                   </svg>
                 </button>
               </li>
+
+              <li class="filter__item">
+                <button class="filter__link" data-service="Прочие услуги">
+                  <p class="filter__link-title">
+                    Прочие услуги
+                  </p>
+                  <svg width="11" height="9" viewBox="0 0 11 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.5 4.5H10M10 4.5L6 1M10 4.5L6 8" stroke="#777E85" />
+                  </svg>
+                </button>
+              </li>
             </ul>
           </div>
           <button class="filter-back" style="display: none">
@@ -233,11 +244,11 @@ include $_SERVER["DOCUMENT_ROOT"] . '/includes/head.php';
               if (mysqli_num_rows($result) > 0) {
                 do {
                   echo '
-                    <li class="services__card" data-service="' . $row['type'] . '" data-name="' . $row['name'] . '">
-                      <img class="services__img" src="/img/' . $row['photo'] . '" alt="' . $row['name'] . '" />
+                    <li class="services__card" data-service="' . trim($row['type']) . '" data-name="' . trim($row['name']) . '">
+                      <img class="services__img" src="/img/' . trim($row['photo']) . '" alt="' . trim($row['alt']) . '" />
 
-                      <a class="services__card-link" href="/pages/usluga/?id=' . $row['id'] . '">
-                        <p class="services__card-title">' . $row['name'] . '</p>
+                      <a class="services__card-link" href="/pages/usluga/?id=' . trim($row['id']) . '">
+                        <p class="services__card-title">' . trim($row['name']) . '</p>
                         <svg width="17" height="15" viewBox="0 0 17 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path
                             d="M16.9884 3.15206C17.0724 2.60619 16.6979 2.09561 16.1521 2.01163L7.25671 0.643113C6.71085 0.559134 6.20026 0.933565 6.11628 1.47943C6.03231 2.02529 6.40674 2.53588 6.9526 2.61986L14.8596 3.83631L13.6431 11.7433C13.5591 12.2891 13.9336 12.7997 14.4794 12.8837C15.0253 12.9677 15.5359 12.5933 15.6199 12.0474L16.9884 3.15206ZM1.59136 14.8064L16.5914 3.8064L15.4086 2.19359L0.408636 13.1936L1.59136 14.8064Z"
@@ -276,7 +287,7 @@ include $_SERVER["DOCUMENT_ROOT"] . '/includes/head.php';
   </div>
 
   <script>
-    let limit = 6;
+    let limit = 12;
 
     function showCards() {
       const cardWrap = document.querySelector('.services__card-wrap');
@@ -326,6 +337,7 @@ include $_SERVER["DOCUMENT_ROOT"] . '/includes/head.php';
 
       for (let i = 0; i < limit; i++) {
         let card = cardWrap.children[i];
+        if (!card) break;
         card.style.display = 'block';
       }
 

@@ -29,13 +29,13 @@ include $_SERVER["DOCUMENT_ROOT"] . '/includes/head.php';
                 echo '
                 <li class="news__card">
                   <div class="news__card-img-wrap">
-                    <img class="news__card-img" src="/img/' . $news['photo'] . '" alt="' . $news['title'] . '" />
+                    <img class="news__card-img" src="/img/' . $news['photo'] . '" alt="' . $news['alt'] . '" />
                   </div>
                   <p class="news__card-date">
                     ' . date("d.m.Y", strtotime($news['date'])) . '
                   </p>
                   <h3 class="news__card-title">
-                    ' . $news['title'] . '
+                    ' . $news['name'] . '
                   </h3>
                   <a class="news__card-link" href="/pages/novost/?id=' . $news['id'] . '">
                     <p class="news__link-title">

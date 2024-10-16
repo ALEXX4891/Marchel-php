@@ -24,7 +24,7 @@ $serviceId = (int)$_GET['id'];
       <div class="content__container container">
 
         <div class="content__img-wrap">
-          <img src="/img/<?= $row['photo'] ?>" alt="новость">
+          <img src="/img/<?= $row['photo'] ?>" alt="<?= $row['alt'] ?>">
         </div>
 
         <p class="content__date">
@@ -72,7 +72,7 @@ $serviceId = (int)$_GET['id'];
                 echo '
                 <li class="news__card swiper-slide">
                   <div class="news__card-img-wrap">
-                    <img class="news__card-img" src="/img/' . $row['photo'] . '" alt="' . $row['title'] . '" />
+                    <img class="news__card-img" src="/img/' . $row['photo'] . '" alt="' . $row['alt'] . '" />
                   </div>
                   <p class="news__card-date">
                     ' . date("d.m.Y", strtotime($row['date'])) . '
